@@ -43,7 +43,6 @@ public:
 		if(it != map_radioColor.end()){// si ya hay fábrica de esas pelotas
 			return Pelota<Posicion,Radio,Color> (posicion,it->second);	
 		}
-
 		Fabrica_pelotas<Radio,Color> *fabrica_pelotas = new Fabrica_pelotas<Radio,Color>(radio, color);
 		map_radioColor[make_pair(radio,color)] = fabrica_pelotas;
 
