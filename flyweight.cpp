@@ -17,7 +17,6 @@ public:
 
 	Fabrica_pelotas(){};
 	Fabrica_pelotas(Radio radio, Color color):radio(radio),color(color){};
-
 };
 
 template<class Posicion, class Radio, class Color>
@@ -28,7 +27,6 @@ public:
 	Fabrica_pelotas<Radio,Color> *fabrica;
 	
 	Posicionelota(Posicion posicion, Fabrica_pelotas<Radio,Color> *fabrica=NULL):posicion(posicion), fabrica(fabrica){};
-
 };
 
 
