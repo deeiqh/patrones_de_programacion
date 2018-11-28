@@ -40,7 +40,7 @@ public:
 
 		auto it = map_radioColor.find(make_pair(radio,color));
 
-		if(  it != map_radioColor.end()){// si ya hay fábrica de esas pelotas
+		if(it != map_radioColor.end()){// si ya hay fábrica de esas pelotas
 			return Pelota<Posicion,Radio,Color> (posicion,(*it).second);	
 		}
 
