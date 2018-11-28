@@ -13,7 +13,7 @@ public:
 	Radio radio;
 	Color color;
 
-	static map<pair<Radio,Color>,Fabrica_pelotas*> map_radioColorolor; // solo para buscar ḿás rápido
+	static map< pair<Radio,Color>,Fabrica_pelotas* > map_radioColorolor; // solo para buscar ḿás rápido
 
 	Fabrica_pelotas(){};
 	Fabrica_pelotas(Radio radio, Color color):radio(radio),color(color){};
@@ -38,7 +38,7 @@ public:
 	template<class Posicion, class Radio, class Color>
 	Posicionelota<Posicion,Radio,Color> crear_pelota(Posicion posicion, Radio radio, Color color){
 
-		static map<pair<Radio,Color>,Fabrica_pelotas<Radio,Color>*> map_radioColorolor; // solo para buscar ḿás rápido
+		static map< pair<Radio,Color>,Fabrica_pelotas<Radio,Color>* > map_radioColorolor; // solo para buscar ḿás rápido
 
 		auto it = map_radioColorolor.find(make_pair(radio,color));
 
