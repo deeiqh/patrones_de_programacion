@@ -15,7 +15,7 @@ public:
 	Radio radio;
 	Color color;
 
-	static map< pair<Radio,Color>,Fabrica_pelotas* > map_radioColorolor; // solo para buscar ḿás rápido
+	static map< pair<Radio,Color>,Fabrica_pelotas* > map_radioColor; // solo para buscar ḿás rápido
 
 	Fabrica_pelotas(){};
 	Fabrica_pelotas(Radio radio, Color color):radio(radio),color(color){};
@@ -36,16 +36,16 @@ public:
 	template<class Posicion, class Radio, class Color>
 	Pelota<Posicion,Radio,Color> crear_pelota(Posicion posicion, Radio radio, Color color){
 
-		static map< pair<Radio,Color>,Fabrica_pelotas<Radio,Color>* > map_radioColorolor; // solo para buscar ḿás rápido
+		static map< pair<Radio,Color>,Fabrica_pelotas<Radio,Color>* > map_radioColor; // solo para buscar ḿás rápido
 
-		auto it = map_radioColorolor.find(make_pair(radio,color));
+		auto it = map_radioColor.find(make_pair(radio,color));
 
-		if(  it != map_radioColorolor.end()){// si ya hay fábrica de esas pelotas
+		if(  it != map_radioColor.end()){// si ya hay fábrica de esas pelotas
 			return Pelota<Posicion,Radio,Color> (posicion,(*it).second);	
 		}
 
 		Fabrica_pelotas<Radio,Color> *fabrica_pelotas = new Fabrica_pelotas<Radio,Color>(radio, color);
-		map_radioColorolor[make_pair(radio,color)] = fabrica_pelotas;
+		map_radioColor[make_pair(radio,color)] = fabrica_pelotas;
 
 		return Pelota<Posicion,Radio,Color> (posicion,fabrica_pelotas);	
 	}
