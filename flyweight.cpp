@@ -1,7 +1,3 @@
-/*
-https://docs.google.com/presentation/d/1_znCnvImkLtVWtM-8d8eUyQ4oJuDiIdbCmOX7rbPY8s/edit?usp=sharing
-*/
-
 #include <iostream>
 #include <map>
 #include <utility>
@@ -10,28 +6,28 @@ https://docs.google.com/presentation/d/1_znCnvImkLtVWtM-8d8eUyQ4oJuDiIdbCmOX7rbP
 using namespace std;
 #define pii_f_s pair<int,int>,float,string
 
-template<class R, class C>
+template<class Radio, class Color>
 class Fabrica_pelotas{
 public:
 
-	R radio;
-	C color;
+	Radio radio;
+	Color color;
 
-	static map<pair<R,C>,Fabrica_pelotas*> map_radioColor; // solo para buscar ḿás rápido
+	static map<pair<Radio,Color>,Fabrica_pelotas*> map_radioColorolor; // solo para buscar ḿás rápido
 
 	Fabrica_pelotas(){};
-	Fabrica_pelotas(R radio, C color):radio(radio),color(color){};
+	Fabrica_pelotas(Radio radio, Color color):radio(radio),color(color){};
 
 };
 
-template<class P, class R, class C>
-class Pelota{
+template<class Posicion, class Radio, class Color>
+class Posicionelota{
 public:
 	
-	P posicion;
-	Fabrica_pelotas<R,C> *fabrica;
+	Posicion posicion;
+	Fabrica_pelotas<Radio,Color> *fabrica;
 	
-	Pelota(P posicion, Fabrica_pelotas<R,C> *fabrica=NULL):posicion(posicion), fabrica(fabrica){};
+	Posicionelota(Posicion posicion, Fabrica_pelotas<Radio,Color> *fabrica=NULL):posicion(posicion), fabrica(fabrica){};
 
 };
 
@@ -39,21 +35,21 @@ public:
 class Fabrica{
 public:
 	
-	template<class P, class R, class C>
-	Pelota<P,R,C> crear_pelota(P posicion, R radio, C color){
+	template<class Posicion, class Radio, class Color>
+	Posicionelota<Posicion,Radio,Color> crear_pelota(Posicion posicion, Radio radio, Color color){
 
-		static map<pair<R,C>,Fabrica_pelotas<R,C>*> map_radioColor; // solo para buscar ḿás rápido
+		static map<pair<Radio,Color>,Fabrica_pelotas<Radio,Color>*> map_radioColorolor; // solo para buscar ḿás rápido
 
-		auto it = map_radioColor.find(make_pair(radio,color));
+		auto it = map_radioColorolor.find(make_pair(radio,color));
 
-		if(  it != map_radioColor.end()){// si ya hay fábrica de esas pelotas
-			return Pelota<P,R,C> (posicion,(*it).second);	
+		if(  it != map_radioColorolor.end()){// si ya hay fábrica de esas pelotas
+			return Posicionelota<Posicion,Radio,Color> (posicion,(*it).second);	
 		}
 
-		Fabrica_pelotas<R,C> *fabrica_pelotas = new Fabrica_pelotas<R,C>(radio, color);
-		map_radioColor[make_pair(radio,color)] = fabrica_pelotas;
+		Fabrica_pelotas<Radio,Color> *fabrica_pelotas = new Fabrica_pelotas<Radio,Color>(radio, color);
+		map_radioColorolor[make_pair(radio,color)] = fabrica_pelotas;
 
-		return Pelota<P,R,C> (posicion,fabrica_pelotas);	
+		return Posicionelota<Posicion,Radio,Color> (posicion,fabrica_pelotas);	
 	}
 };
 
@@ -61,13 +57,13 @@ int main(){
 
 	Fabrica fabrica;
 
-	Pelota<pii_f_s> pelota_1 = fabrica.crear_pelota<pii_f_s>( make_pair(12,13), 13.5, "rojo" );
-	Pelota<pii_f_s> pelota_2 = fabrica.crear_pelota<pii_f_s>( make_pair(13,13), 13.5, "rojo" );
-	Pelota<pii_f_s> pelota_3 = fabrica.crear_pelota<pii_f_s>( make_pair(13,145), 13.5, "rojo" );
-	Pelota<pii_f_s> pelota_4 = fabrica.crear_pelota<pii_f_s>( make_pair(34,67), 13.5, "rojo" );
-	Pelota<pii_f_s> pelota_5 = fabrica.crear_pelota<pii_f_s>( make_pair(987,12), 14.7, "amarillo" );
-	Pelota<pii_f_s> pelota_6 = fabrica.crear_pelota<pii_f_s>( make_pair(120,122), 14.7, "amarillo" );
-	Pelota<pii_f_s> pelota_7 = fabrica.crear_pelota<pii_f_s>( make_pair(12,113), 17, "azul" );
+	Posicionelota<pii_f_s> pelota_1 = fabrica.crear_pelota<pii_f_s>( make_pair(12,13), 13.5, "rojo" );
+	Posicionelota<pii_f_s> pelota_2 = fabrica.crear_pelota<pii_f_s>( make_pair(13,13), 13.5, "rojo" );
+	Posicionelota<pii_f_s> pelota_3 = fabrica.crear_pelota<pii_f_s>( make_pair(13,145), 13.5, "rojo" );
+	Posicionelota<pii_f_s> pelota_4 = fabrica.crear_pelota<pii_f_s>( make_pair(34,67), 13.5, "rojo" );
+	Posicionelota<pii_f_s> pelota_5 = fabrica.crear_pelota<pii_f_s>( make_pair(987,12), 14.7, "amarillo" );
+	Posicionelota<pii_f_s> pelota_6 = fabrica.crear_pelota<pii_f_s>( make_pair(120,122), 14.7, "amarillo" );
+	Posicionelota<pii_f_s> pelota_7 = fabrica.crear_pelota<pii_f_s>( make_pair(12,113), 17, "azul" );
 
 	return 0;
 }
